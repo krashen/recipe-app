@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import useStore from './store'
+import { Router, Route, Routes } from 'react-router-dom'
+
+import RecipeList from './components/RecipeList.component'
+import LogIn from './routes/LogIn'
+import { get_recipes_url } from './endpoints'
 
 function App() {
+
+  const updateRecipeList = useStore((state) => state.updateRecipeList)
+  const token = useStore((state) => state.token)
+  const setToken = useStore((state) => state.setToken)
+
+
+  useEffect(()=> {  
+    if (token) {
+      axios.get(get_recipes_url, { 
+        headers: {
+          'Authorization': `Token ${token}`
+        } 
+      })
+      .then(r => {
+        updateRecipeList(r.data) 
+      })
+      .catch(e => {
+        console.log(e)
+      });
+    }
+  },[token])
+
+  const logOut = () => {
+      localStorage.setItem('authToken', '')
+      setToken('') 
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <main>
+      <a onClick={logOut}>Log out</a>
+      {token ? <RecipeList /> : <LogIn /> }
+    </main>    
+  )
 }
 
 export default App;
