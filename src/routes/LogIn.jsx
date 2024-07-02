@@ -16,7 +16,7 @@ const LogIn = () => {
             .then(r => {
                 localStorage.setItem('authToken', r.data.token)
                 setToken(r.data.token)
-            }).catch(e => { console.log(e) })
+            }).catch(e => console.log(e))
     }
 
     const handleLogin = (e) => {
@@ -32,12 +32,8 @@ const LogIn = () => {
                 'password': newPassword,
                 'name': newUser
             })
-            .then(r => {
-                axiosLogIn(newUser, newPassword)
-            })
-            .catch(e => {
-                console.log(e)
-            })
+            .then(r => { axiosLogIn(newUser, newPassword) })
+            .catch(e => console.log(e))
     }
 
     return (
