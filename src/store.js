@@ -12,9 +12,6 @@ const useStore = create((set) => ({
     recipes: [],
     updateRecipeList: (recipesList) => set((state) => ({
         recipes: recipesList
-    })),
-    removeRecipe: (idToRemove) => set((state) => ({
-        recipes: state.recipes.filter(recipe => recipe.id !== idToRemove)
     }))
 }))
 
