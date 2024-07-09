@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
+import DOMPurify from 'dompurify'
 import { get_recipes_url } from '../endpoints'
 import useStore from '../store'
 import TagLabel from '../components/TagLabel.component'
@@ -70,6 +71,13 @@ const Detail = () => {
         return url
     }
 
+    const renderLineBreaks = (string) => {
+        const convertedString = string.replace(/\n/g, '<br />')
+        return DOMPurify.sanitize(convertedString, {
+            ALLOWED_TAGS: ['br'],
+        })
+    }
+
     return (
         <div>
             {prompt && <ConfirmationModal message={'Delete this recipe?'} onConfirm={onConfirmDelete} onCancel={onCancelDelete} />}
@@ -88,8 +96,7 @@ const Detail = () => {
                 </ul></div>)
             }
             {recipe.description && (
-                <div className='p-4 mb-4 rounded-md global-drop-shadow bg-orange-100'>
-                    {recipe.description}
+                <div className='p-4 mb-4 rounded-md global-drop-shadow bg-orange-100' dangerouslySetInnerHTML={{ __html: renderLineBreaks(recipe.description) }}>
                 </div>
             )}
             {

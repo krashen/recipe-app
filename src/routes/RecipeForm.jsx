@@ -134,7 +134,7 @@ const RecipeForm = ({ edit }) => {
 
             if (imageFile) {
                 try {
-                    const res_image = await axios(
+                    await axios(
                         {
                             url: `${get_recipes_url}${res_recipe.data.id}/`,
                             method: 'PATCH',

@@ -23,7 +23,7 @@ function App() {
       <div className='container bg-white p-4 rounded-lg global-drop-shadow mb-6'>
         <Link to='/' className='block mx-auto '><img className='mx-auto w-1/3 md:w-40' alt='logo' src={`${process.env.PUBLIC_URL}/recipes_logo_short.png`} /></Link>
         <nav className='text-right pb-2'>
-            {loggedIn && <a className='underline text-xs font-bold text-zinc-400' onClick={logOut}>Logout</a>}
+            {loggedIn && <button className='underline text-xs font-bold text-zinc-400' onClick={logOut}>Logout</button>}
         </nav>
         <main>
           <Routes>       
