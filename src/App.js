@@ -11,7 +11,6 @@ import RecipeForm from './routes/RecipeForm'
 function App() {
   const loggedIn = useStore((state) => state.loggedIn)
   const setToken = useStore((state) => state.setToken)
- 
 
   const logOut = () => {
       localStorage.setItem('authToken', '')
@@ -20,20 +19,26 @@ function App() {
   
   return (
 
-    <div>
-      <div>
-          <h2><Link to='/'>This is laout loco</Link></h2>
-          {loggedIn && <a onClick={logOut}>Log out</a>}
+    <div id='main' className='p-3 pb-8 md:max-w-screen-md mx-auto'>
+      <div className='container bg-white p-4 rounded-lg global-drop-shadow mb-6'>
+        <Link to='/' className='block mx-auto '><img className='mx-auto w-1/3 md:w-40' alt='logo' src={`${process.env.PUBLIC_URL}/recipes_logo_short.png`} /></Link>
+        <nav className='text-right pb-2'>
+            {loggedIn && <a className='underline text-xs font-bold text-zinc-400' onClick={logOut}>Logout</a>}
+        </nav>
+        <main>
+          <Routes>       
+            <Route index element={loggedIn ? <RecipeList /> : <LogIn />} />
+            <Route path='recipes/tag/:id' element={loggedIn ? <RecipeList tag /> : <LogIn />} />
+            <Route path='recipes/ingredient/:id' element={loggedIn ? <RecipeList ingredient /> : <LogIn />} />
+            <Route path='recipe/add' element={<RecipeForm />} />
+            <Route path='recipe/:id' element={<Detail />} />            
+            <Route path='recipe/:id/edit' element={<RecipeForm edit />} />             
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </main>
+        
       </div>
-      <Routes>       
-        <Route index element={loggedIn ? <RecipeList /> : <LogIn />} />
-        <Route path='recipes/tag/:id' element={loggedIn ? <RecipeList tag /> : <LogIn />} />
-        <Route path='recipes/ingredient/:id' element={loggedIn ? <RecipeList ingredient /> : <LogIn />} />
-        <Route path='recipe/add' element={<RecipeForm />} />
-        <Route path='recipe/:id' element={<Detail />} />            
-        <Route path='recipe/:id/edit' element={<RecipeForm edit />} />             
-        <Route path='*' element={<NotFound />} />
-      </Routes> 
+      <footer className='text-xs text-center font-bold text-stone-500 '>App by <a className='underline' alt='App by Pablo Ferreyra' href='https://github.com/krashen'>Pablo Ferreyra</a></footer> 
     </div>   
   )
 }

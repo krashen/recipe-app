@@ -4,6 +4,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { get_recipes_url } from '../endpoints'
 import { useLocation, Link, useParams } from 'react-router-dom'
+import LoadingSpinner from './LoadingSpinner.component'
+import ErrorMessage from './ErrorMessage.component'
 
 const RecipeList = ({ tag, ingredient }) => {
     const { id } = useParams()
@@ -14,6 +16,10 @@ const RecipeList = ({ tag, ingredient }) => {
     const location = useLocation()
     const [filterText, setFilterText] = useState('')
     const [filtered, setFiltered] = useState(false)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+
     let request_url = `${get_recipes_url}`
 
     if (tag) {
@@ -30,19 +36,23 @@ const RecipeList = ({ tag, ingredient }) => {
                 }
             })
                 .then(r => {
-                    //console.log(r)
+                    //console.log(r.data)
                     updateRecipeList(r.data)
                     if (tag || ingredient) {
                         setFiltered(true)
                     } else {
                         setFiltered(false)
                     }
+                    setLoading(false)
+                    setError(false)
                 })
                 .catch(e => {
                     console.log(e)
+                    setError(true)
+                    setErrorMessage('Error loading recipes')
                 });
         }
-    }, [location])
+    }, [location, loggedIn])
 
     useEffect(() => {
         if (filtered) {
@@ -52,16 +62,24 @@ const RecipeList = ({ tag, ingredient }) => {
 
     return (
         <div>
+            {error && <ErrorMessage text={errorMessage} />}
+            {loading && <LoadingSpinner />}
             {filtered && <div>
-                <h4>Recipes with {tag ? 'tag' : 'ingredient'}: {filterText}</h4>
-                <Link to='/'>Clear filter</Link>
+                <h4 className='text-sm pb-4'>Recipes with {tag ? 'tag' : ''}{ingredient ? 'ingredient' : ''}:
+                    <span className='rounded-md mx-1 bg-teal-500 inline-block text-white p-1 px-2 text-xs global-drop-shadow'>{filterText}</span>
+                    <Link onClick={(e) => { setLoading(true) }} className='text-xs underline' to='/'>Clear filter</Link>
+                </h4>
             </div>
             }
 
-            <Link to='/recipe/add'>+Add</Link>
-            {
-                recipes.map((recipe) => <Link key={recipe.id} to={`/recipe/${recipe.id}/`}><RecipeCard key={recipe.id} recipe={recipe} /></Link>)
-            }
+            <div className='add-block text-center pb-3 md:flex md:justify-center'>
+                <Link className='md:w-1/2 global-drop-shadow no-underline text-center font-bold p-2 rounded-md bg-orange-200 block text-fuchsia-900 text-sm' to='/recipe/add'>+ Add</Link>
+            </div>
+            <div className='md:flex md:flex-wrap'>
+                {
+                    recipes.map((recipe) => <Link className='' style={{ flex: '0 1 calc(50% - 10px)', margin: '5px' }} key={recipe.id} to={`/recipe/${recipe.id}/`}><RecipeCard key={recipe.id} recipe={recipe} /></Link>)
+                }
+            </div>
         </div>
     )
 }

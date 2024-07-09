@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { WithContext as ReactTags } from 'react-tag-input'
 
 // Specifies which characters should terminate tags input. An array of character codes.
@@ -9,7 +8,7 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter]
 
-const InputList = ({ extraCSSClass, placeholder, list, handleRemove, handleAdd, typeId }) => {
+const InputList = ({ extraCSSClass, placeholder, list, handleRemove, handleAdd }) => {
 
     return (
         <div id='tags' className={extraCSSClass}>
@@ -19,7 +18,6 @@ const InputList = ({ extraCSSClass, placeholder, list, handleRemove, handleAdd, 
                 handleDelete={handleRemove}
                 handleAddition={handleAdd}
                 inputFieldPosition='bottom'
-                autocomplete
                 allowDragDrop={false}
                 placeholder={placeholder}
                 editable

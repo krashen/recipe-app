@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.global-drop-shadow {
+    box-shadow: -1px 4px 3px -1px rgba(0,0,0,0.46);
+    -webkit-box-shadow: -1px 4px 3px -1px rgba(0,0,0,0.46);
+    -moz-box-shadow: -1px 4px 3px -1px rgba(0,0,0,0.46);
+}
+
+.global-drop-shadow-in {
+    box-shadow:inset -1px 4px 3px -1px rgba(0,0,0,0.46);
+    -webkit-box-shadow:inset -1px 4px 3px -1px rgba(0,0,0,0.46);
+    -moz-box-shadow:inset -1px 4px 3px -1px rgba(0,0,0,0.46);
+}
+
+.recipeForm input {
+    display: block;
+    border-radius: 5px;
+    padding: 3px;
+    border: 1px solid rgb(193, 169, 109);
+    margin-bottom: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.recipeForm label {
+    display: block;
+    font-size: 13px;
+    color: rgb(87, 87, 87);
+}
+
+.recipeForm input.numberInput {
+    width: 25%;
+}
+
+.recipeForm textarea {
+    width: 100%;
+    display: block;
+    min-height: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(193, 169, 109);
+    border-radius: 5px;
+}
+
+.recipeForm .recipeImagePreview {
+    padding:00 00 10px 00
+}
+.recipeForm .recipeImagePreview img {
+    display: inline;
+    max-width: 60%;
+}
+
+.recipeForm .recipeImagePreview button {
+    font-size: 15px;
+    margin-left: 10px;
+    color:brown;
+    text-decoration: underline;
+}
+
+.recipeForm .recipeImageInput {
+    border: none;
+}
+
+.loginForm input {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid rgb(193, 169, 109);
+    border-radius: 5px; 
+    padding:3px 5px;
+}
