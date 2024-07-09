@@ -22,9 +22,12 @@ function App() {
     <div id='main' className='p-3 pb-8 md:max-w-screen-md mx-auto'>
       <div className='container bg-white p-4 rounded-lg global-drop-shadow mb-6'>
         <Link to='/' className='block mx-auto '><img className='mx-auto w-1/3 md:w-40' alt='logo' src={`${process.env.PUBLIC_URL}/recipes_logo_short.png`} /></Link>
-        <nav className='text-right pb-2'>
-            {loggedIn && <button className='underline text-xs font-bold text-zinc-400' onClick={logOut}>Logout</button>}
-        </nav>
+        {loggedIn && (
+          <nav className='pb-2 flex justify-between'>
+            <Link to='/' className='p-1 px-4 mb-4 rounded-md global-drop-shadow bg-blue-400 text-white'>Go back</Link>    
+            <button className='underline text-xs font-bold text-zinc-400' onClick={logOut}>Logout</button>
+          </nav>
+        )}
         <main>
           <Routes>       
             <Route index element={loggedIn ? <RecipeList /> : <LogIn />} />

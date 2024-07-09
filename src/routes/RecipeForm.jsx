@@ -171,11 +171,11 @@ const RecipeForm = ({ edit }) => {
             <form className='recipeForm' onSubmit={handleSubmit}>
 
                 <label>Title</label>
-                <input required value={title} onChange={(e) => setTitle(e.target.value)} type='text' />
+                <input autoFocus={false} required value={title} onChange={(e) => setTitle(e.target.value)} type='text' />
                 <label>Minutes</label>
-                <input className='numberInput' required value={timeMinutes} onChange={(e) => setTimeMinutes(e.target.value)} min='0' type='number' />
+                <input autoFocus={false} className='numberInput' required value={timeMinutes} onChange={(e) => setTimeMinutes(e.target.value)} min='0' type='number' />
                 <label>Link</label>
-                <input value={link} onChange={(e) => setLink(e.target.value)} type='text' />
+                <input autoFocus={false} value={link} onChange={(e) => setLink(e.target.value)} type='text' />
                 <label htmlFor="">Ingredients</label>
                 <InputList
                     extraCSSClass='ingredients'
@@ -185,12 +185,12 @@ const RecipeForm = ({ edit }) => {
                     placeholder='Add ingredient and hit Enter'
                 />
                 <label htmlFor="">Description</label>
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+                <textarea autoFocus={false} value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                 <label htmlFor="">Image</label>
                 {image && <div className='recipeImagePreview'><img alt='recipe image' src={image} /> {!edit && <button onClick={removeImage}>Delete</button>}</div>}
 
                 <div className='pb-6'>
-                    <input className='recipeImageInput' onChange={handleFileChange} ref={imageInputRef} type='file' />
+                    <input autoFocus={false} className='recipeImageInput' onChange={handleFileChange} ref={imageInputRef} type='file' />
                 </div>
 
                 <div className='pb-8 mb-8'>

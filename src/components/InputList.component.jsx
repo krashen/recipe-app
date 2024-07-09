@@ -21,6 +21,7 @@ const InputList = ({ extraCSSClass, placeholder, list, handleRemove, handleAdd }
                 allowDragDrop={false}
                 placeholder={placeholder}
                 editable
+                autoFocus={false}
             />
         </div>
     )
