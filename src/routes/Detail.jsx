@@ -82,7 +82,7 @@ const Detail = () => {
         <div>
             {prompt && <ConfirmationModal message={'Delete this recipe?'} onConfirm={onConfirmDelete} onCancel={onCancelDelete} />}
             {loading && <LoadingSpinner />}
-            <Link className='p-1 px-2 mb-2 rounded-md global-drop-shadow bg-blue-400 text-white text-sm' to='/'>Back to list</Link>
+            <div className='mb-2'><Link className='p-1 rounded-sm global-drop-shadow bg-blue-400 text-white text-xs' to='/'>Back to list</Link></div>
             <h2 className='text-xl text-center mb-3 p-2 rounded-md global-drop-shadow bg-orange-100'>{recipe.title}</h2>
             {recipe.time_minutes && <span className='block text-center whitespace-nowrap text-fuchsia-900 text-sm'>{recipe.time_minutes} min</span>}
             {recipe.link && <h4 className='underline text-md text-sky-500 mb-2 text-right'><a href={ensureProtocol(recipe.link)} alt='external link'>{recipe.link}</a></h4>}
