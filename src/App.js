@@ -39,7 +39,7 @@ function App() {
         </main>
         
       </div>
-      <footer className='text-xs text-center font-bold text-stone-500 '>App by <a className='underline' alt='App by Pablo Ferreyra' href='https://github.com/krashen'>Pablo Ferreyra</a></footer> 
+      <footer className='text-xs text-center font-bold text-stone-500 '>App by <a className='underline' target='_blank' alt='App by Pablo Ferreyra' href='https://github.com/krashen'>Pablo Ferreyra</a></footer> 
     </div>   
   )
 }

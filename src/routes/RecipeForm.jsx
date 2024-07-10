@@ -18,9 +18,8 @@ const formatListToSend = (l) => {
 const formatListToRender = (l) => {
     return l.map((t) => {
         return {
-            id: t.name,
-            text: t.name,
-            className: ''
+            id: t.id.toString(),
+            text: t.name
         }
     })
 }
@@ -84,9 +83,16 @@ const RecipeForm = ({ edit }) => {
         }
     }, [])
 
-    const handleRemoveTag = (i) => { setTags(tags.filter((tag, index) => index !== i)) }
-    const handleAddTag = (tag) => { setTags([...tags, tag]) }
-    const handleRemoveIngredient = (i) => { setIngredients(ingredients.filter((ingredient, index) => index !== i)) }
+    const handleRemoveTag = (i) => {
+        setTags(tags.filter((tag, index) => index !== i))
+    }
+
+    const handleAddTag = (tag) => {
+        setTags([...tags, tag])
+    }
+    const handleRemoveIngredient = (i) => {
+        setIngredients(ingredients.filter((ingredient, index) => index !== i))
+    }
 
     const handleAddIngredient = (ingredient) => {
         console.log(ingredients, ingredient)
