@@ -20,7 +20,7 @@ const InputList = ({ extraCSSClass, placeholder, list, handleRemove, handleAdd }
                 inputFieldPosition='bottom'
                 allowDragDrop={false}
                 placeholder={placeholder}
-                editable={true}
+                editable={false}
                 autoFocus={false}
                 allowDeleteFromEmptyInput={true}
             />
